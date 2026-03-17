@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1066511114120",
+    "project_id": "smartgrocer-8b632",
+    "storage_bucket": "smartgrocer-8b632.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066511114120:android:d783e4c136add39d84643d",
+        "android_client_info": {
+          "package_name": "com.smartgrocer.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcfLaDS3pstVzXuQaitEXSyoAhLSO_Umo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
