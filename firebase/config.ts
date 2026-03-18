@@ -1,3 +1,6 @@
+// Override Firebase's environment detection to prevent it from loading Node.js HTTP engines (like Undici) -> solves auth network request failed error
+(global as any).__FIREBASE_DEFAULTS__ = { forceEnvironment: 'browser' };
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { initializeApp } from 'firebase/app';
 // @ts-ignore – getReactNativePersistence is only in the RN build resolved by metro.config.js

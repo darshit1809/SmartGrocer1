@@ -43,17 +43,36 @@ export default function EnterSalesScreen() {
 
         try {
             await makeSale(selectedProduct.name, qty);
-            Alert.alert('Success', 'Sale recorded successfully', [
-                {
-                    text: 'OK',
-                    onPress: () => {
-                        // Reset form
-                        setQuantity('');
-                        setSelectedProduct(null);
-                        router.back();
+            
+            const newQuantity = selectedProduct.quantity - qty;
+            
+            if (newQuantity < 2) {
+                Alert.alert(
+                    'Success & Low Stock Warning',
+                    `Sale recorded successfully!\n\nWARNING: Stock for ${selectedProduct.name} is now low (${newQuantity} ${selectedProduct.unitType === 'kg' ? 'kg' : 'units'} left).`,
+                    [
+                        {
+                            text: 'OK',
+                            onPress: () => {
+                                setQuantity('');
+                                setSelectedProduct(null);
+                                router.back();
+                            },
+                        },
+                    ]
+                );
+            } else {
+                Alert.alert('Success', 'Sale recorded successfully', [
+                    {
+                        text: 'OK',
+                        onPress: () => {
+                            setQuantity('');
+                            setSelectedProduct(null);
+                            router.back();
+                        },
                     },
-                },
-            ]);
+                ]);
+            }
         } catch (error: any) {
             Alert.alert('Error', error.message || 'Failed to record sale');
         }

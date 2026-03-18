@@ -77,6 +77,8 @@ export default function AddStockScreen() {
       setQuantity('');
       setPrice('');
       setUnitType('kg');
+      
+      Alert.alert('Success', 'Stock added successfully!');
     } catch (error: any) {
       Alert.alert('Error', error.message || 'Failed to add product');
     }
