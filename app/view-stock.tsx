@@ -2,9 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
 import { ActivityIndicator, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useStock } from '../context/StockContext';
+import { useRouter } from 'expo-router';
 
 export default function ViewStockScreen() {
   const { products, sales, deleteStock } = useStock();
+  const router = useRouter();
 
   // Aggregate data
   const aggregatedData = useMemo(() => {
@@ -56,7 +58,16 @@ export default function ViewStockScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Stock Overview</Text>
+      <View style={styles.headerTitleRow}>
+        <Text style={styles.title}>Stock Overview</Text>
+        <TouchableOpacity 
+          style={styles.analyticsButton} 
+          onPress={() => router.push('/analytics')}
+        >
+          <Ionicons name="bar-chart" size={20} color="#FFF" />
+          <Text style={styles.analyticsButtonText}>Analytics</Text>
+        </TouchableOpacity>
+      </View>
 
       <FlatList
         data={aggregatedData}
@@ -108,9 +119,32 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
+  },
+  headerTitleRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 20,
     marginTop: 10,
-    textAlign: 'center',
+  },
+  analyticsButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FF8C00',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 8,
+    shadowColor: '#FF8C00',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  analyticsButtonText: {
+    color: '#FFF',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginLeft: 6,
   },
   card: {
     backgroundColor: '#FFF',
